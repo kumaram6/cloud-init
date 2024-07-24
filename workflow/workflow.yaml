@@ -1,0 +1,9 @@
+apiVersion: "tinkerbell.org/v1alpha1"
+kind: Workflow
+metadata:
+  name: sandbox-workflow
+spec:
+  templateRef: ubuntu-focal
+  hardwareRef: machine-65104
+  hardwareMap:
+    device_1: 90:49:fa:07:99:bf

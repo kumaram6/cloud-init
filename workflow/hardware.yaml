@@ -1,0 +1,65 @@
+apiVersion: "tinkerbell.org/v1alpha1"
+kind: Hardware
+metadata:
+  name: machine-65104
+  namespace: maestro-iaas-system
+spec:
+  disks:
+  - device: /dev/sda
+  userData: >-
+    #cloud-config
+    
+    package_update: true
+    
+    users:
+      - name: tink
+        sudo: ['ALL=(ALL) NOPASSWD:ALL']
+        shell: /bin/bash
+        plain_text_passwd: 'tink'
+        lock_passwd: false
+        ssh_authorized_keys:
+          - ssh-rsa AAAAB3Nza...iYTw==
+    packages:
+      - openssl
+      - net-tools
+    runcmd:
+      - sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+      - systemctl enable ssh.service
+      - systemctl start ssh.service
+      - systemctl disable snapd
+      - rm -f /etc/hostname
+      - mkdir /home/user/amit
+      - echo 'Hello, World!' > /home/user/amit/hello-world.txt
+    write_files:
+      - content: cloud-init test example
+        owner: user:user
+        path: /home/user/tests.txt
+        permissions: '0644'
+  metadata:
+    facility:
+      facility_code: sandbox
+    instance:
+      hostname: "machine-65104"
+      id: 90:49:fa:07:99:bf
+      operating_system:
+        distro: "ubuntu"
+        os_slug: "ubuntu_20_04"
+        version: "20.04"
+  interfaces:
+  - dhcp:
+      arch: x86_64
+      hostname: machine-65104
+      ip:
+        address: 10.49.1.138
+        gateway: 10.49.1.251
+        netmask: 255.255.254.0
+      lease_time: 86400
+      mac: 90:49:fa:07:99:bf
+      name_servers:
+      - 10.248.2.1
+      - 172.30.90.4
+      - 10.223.45.36
+      uefi: true
+    netboot:
+      allowPXE: true
+      allowWorkflow: true
