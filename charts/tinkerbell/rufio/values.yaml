@@ -1,0 +1,23 @@
+deploy: true
+name: rufio
+image: quay.io/tinkerbell/rufio:v0.3.3
+imagePullPolicy: IfNotPresent
+resources:
+  requests:
+    cpu: 10m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi
+additionalArgs: []
+serviceAccountName: rufio-controller-manager
+rufioLeaderElectionRoleName: rufio-leader-election-role
+managerRoleName: rufio-manager-role
+rufioLeaderElectionRoleBindingName: rufio-leader-election-rolebinding
+managerRoleBindingName: rufio-manager-rolebinding
+nodeSelector: {}
+hostNetwork: false
+# singleNodeClusterConfig to add tolerations for deployments on control plane nodes. This is defaulted to false.
+singleNodeClusterConfig:
+  controlPlaneTolerationsEnabled: false
+  nodeAffinityWeight: 1
