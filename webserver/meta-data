@@ -1,0 +1,9 @@
+facility:
+    facility_code: sandbox
+  instance:
+    hostname: "machine-65104"
+    id: 90:49:fa:07:99:bf
+    operating_system:
+      distro: "ubuntu"
+      os_slug: "ubuntu_20_04"
+      version: "20.04
