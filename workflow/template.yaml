@@ -61,7 +61,7 @@ spec:
              FS_TYPE: ext4
              CHROOT: y
              DEFAULT_INTERPRETER": "/bin/sh -c"
-             CMD_LINE: "wget -O /etc/cloud/cloud.cfg.d/10_tinkerbell.cfg https://github.com/kumaram6/cloud-init/blob/main/installer.cfg; chmod 755 /etc/cloud/cloud.cfg.d/10_tinkerbell.cfg"
+             CMD_LINE: "wget -O /etc/cloud/cloud.cfg.d/10_tinkerbell.cfg https://raw.githubusercontent.com/kumaram6/cloud-init/NoCloud/installer.cfg; chmod 755 /etc/cloud/cloud.cfg.d/10_tinkerbell.cfg"
           - name: "add cloud-init ds-identity"
             image: 10.49.1.137:5000/one-intel-edge/edge-node/tinker-actions/writefile:1.2.2
             timeout: 90
