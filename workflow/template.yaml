@@ -54,7 +54,7 @@ spec:
               GID: "0"
               MODE: "0755"
               UID: "0"
-          - name:"ActionInstallScriptDownload"
+          - name: "ActionInstallScriptDownload"
             image: 10.49.1.137:5000/one-intel-edge/edge-node/tinker-actions/cexec:1.2.2
             timeout: 200
             environment:
