@@ -62,6 +62,20 @@ spec:
               CHROOT: y
               DEFAULT_INTERPRETER": "/bin/sh -c"
               CMD_LINE: "wget -O /etc/cloud/cloud.cfg.d/10_tinkerbell.cfg https://raw.githubusercontent.com/kumaram6/cloud-init/NoCloud/installer.cfg; chmod 755 /etc/cloud/cloud.cfg.d/10_tinkerbell.cfg"
+          - name: "add cloud-init config"
+            image: 10.49.1.137:5000/one-intel-edge/edge-node/tinker-actions/writefile:1.2.2
+            timeout: 90
+            environment:
+              CONTENTS: |
+                datasource:
+                  NoCloud:
+                    seedfrom: https://tink.jf.intel.com/tink-stack/
+              DEST_PATH: /etc/cloud/cloud.cfg.d/10_tinkerbell.cfg
+              DIRMODE: "0700"
+              FS_TYPE: ext4
+              GID: "0"
+              MODE: "0600"
+              UID: "0"
           - name: "add cloud-init ds-identity"
             image: 10.49.1.137:5000/one-intel-edge/edge-node/tinker-actions/writefile:1.2.2
             timeout: 90
